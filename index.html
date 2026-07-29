@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AI Meeting Room Demo</title>
+<meta charset="UTF-8">
+<title>AI Meeting Room Optimization Demo</title>
 
 <style>
+
 body{
-font-family:Arial,sans-serif;
+font-family:Segoe UI,Arial;
 background:#f4f6f9;
 margin:0;
 padding:20px;
@@ -15,94 +17,134 @@ padding:20px;
 background:#003781;
 color:white;
 padding:20px;
-border-radius:10px;
 text-align:center;
+border-radius:12px;
 }
 
 .card{
 background:white;
 padding:20px;
 margin-top:20px;
-border-radius:10px;
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
 input{
 width:100%;
-padding:10px;
+padding:12px;
 margin-top:10px;
 }
 
 button{
 background:#003781;
 color:white;
-padding:12px 20px;
 border:none;
-border-radius:5px;
-margin-top:10px;
+padding:12px 20px;
+border-radius:6px;
 cursor:pointer;
-}
-
-.room{
-background:#e8f5e9;
-padding:15px;
-border-radius:10px;
-margin-top:15px;
+margin-top:10px;
 }
 
 .display{
 background:black;
 color:white;
 padding:20px;
+border-radius:12px;
+}
+
+.room-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.room{
+padding:20px;
 border-radius:10px;
-margin-top:15px;
-}
-
-.red{
-color:red;
 font-weight:bold;
+text-align:center;
 }
 
-.green{
-color:lime;
-font-weight:bold;
+.red{background:#ffcdd2;}
+.green{background:#c8e6c9;}
+.yellow{background:#fff9c4;}
+
+.kpis{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
+.kpi{
+flex:1;
+min-width:180px;
+background:#e8f0fe;
+text-align:center;
+padding:20px;
+border-radius:10px;
 }
 
-th,td{
-padding:12px;
-border-bottom:1px solid #ddd;
-text-align:left;
+.qr{
+text-align:center;
 }
+
 </style>
 
 <script>
+
 function recommendRoom(){
 
-var attendees=
+let attendees =
 document.getElementById("attendees").value;
 
-var room="";
+let room="";
+let score="";
 
-if(attendees<=8){
+if(attendees <= 8){
 room="Orion Room";
+score="92%";
 }
-else if(attendees<=12){
+else if(attendees <= 12){
 room="Neptune Room";
+score="89%";
 }
 else{
 room="Galaxy Room";
+score="85%";
 }
 
-document.getElementById("result").innerHTML=
-"<div class='room'><h3>Recommended Room: "
-+room+
-"</h3><p>AI Confidence: 92%</p></div>";
+document.getElementById("result").innerHTML =
+`
+<div style='background:#e8f5e9;padding:15px;border-radius:10px;'>
+
+<h3>✅ AI Recommendation</h3>
+
+<p><b>Recommended Room:</b> ${room}</p>
+
+<p><b>Capacity Match Score:</b> ${score}</p>
+
+<p><b>Reason:</b> Best room based on attendee count and availability.</p>
+
+</div>
+`;
 }
+
+
+function releaseRoom(){
+
+document.getElementById("release").innerHTML=
+`
+<h3 style='color:green;'>
+✅ Room Released Successfully
+</h3>
+
+<p>
+Galaxy Room is now available for booking.
+</p>
+`;
+
+}
+
 </script>
 
 </head>
@@ -110,31 +152,45 @@ document.getElementById("result").innerHTML=
 <body>
 
 <div class="header">
+
 <h1>AI-Powered Meeting Room Optimization</h1>
-<p>Smart Booking • Smart Occupancy • Smart Utilization</p>
+
+<p>
+Predict • Optimize • Automate
+</p>
+
 </div>
 
 <div class="card">
-<h2>Book a Meeting</h2>
+
+<h2>📅 Book a Meeting</h2>
 
 <input type="text" placeholder="Meeting Title">
 
-<input id="attendees" type="number" placeholder="Number of Attendees">
+<input id="attendees" type="number"
+placeholder="Number of Attendees">
 
 <button onclick="recommendRoom()">
+
 Find Best Room
+
 </button>
 
 <div id="result"></div>
+
 </div>
 
 <div class="card">
-<h2>Smart Occupancy Display Panel</h2>
+
+<h2>🖥 Smart Occupancy Display Panel</h2>
 
 <div class="display">
+
 <h2>ORION ROOM</h2>
 
-<p class="red">🔴 OCCUPIED</p>
+<h3 style="color:red;">
+🔴 OCCUPIED
+</h3>
 
 <p>Current Meeting</p>
 
@@ -144,74 +200,127 @@ Find Best Room
 
 <hr>
 
-<p>AI Status</p>
-
-<p class="green">✅ Occupancy Confirmed</p>
+<p>
+✅ Occupancy Confirmed
+</p>
 
 <hr>
 
-<p>Next Meeting</p>
-
-<p>Vendor Discussion</p>
-
-<p>11:30 AM - 12:30 PM</p>
-
-</div>
-</div>
-
-<div class="card">
-<h2>Meeting Room Dashboard</h2>
-
-<table>
-<tr>
-<th>Room</th>
-<th>Status</th>
-<th>Available</th>
-</tr>
-
-<tr>
-<td>Orion</td>
-<td>Occupied</td>
-<td>11:00 AM</td>
-</tr>
-
-<tr>
-<td>Neptune</td>
-<td>Available</td>
-<td>Now</td>
-</tr>
-
-<tr>
-<td>Galaxy</td>
-<td>Available Soon</td>
-<td>10:30 AM</td>
-</tr>
-
-</table>
-</div>
-
-<div class="card">
-<h2>AI Insights</h2>
-
 <p>
-⚠ Potential No-Show Detected
+Next Meeting:
+Vendor Review
 </p>
 
 <p>
-Galaxy Room booking has no occupancy detected after 10 minutes.
+11:30 AM - 12:30 PM
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🏢 Meeting Room Map</h2>
+
+<div class="room-grid">
+
+<div class="room red">
+Orion 🔴 Occupied
+</div>
+
+<div class="room green">
+Neptune 🟢 Available
+</div>
+
+<div class="room yellow">
+Galaxy 🟡 Available Soon
+</div>
+
+<div class="room green">
+Vega 🟢 Available
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>⚠ AI No-Show Detection</h2>
+
+<div id="release">
+
+<p>
+Galaxy Room Meeting
+started at 10:00 AM
 </p>
 
 <p>
-AI Confidence: 85%
+No occupancy detected
+for 10 minutes
+</p>
+
+<p>
+AI Confidence:
+85%
 </p>
 
 <button>
 Send Reminder
 </button>
 
-<button>
+<button onclick="releaseRoom()">
 Release Room
 </button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📊 Analytics Dashboard</h2>
+
+<div class="kpis">
+
+<div class="kpi">
+<h1>86%</h1>
+Room Utilization
+</div>
+
+<div class="kpi">
+<h1>12</h1>
+Available Rooms
+</div>
+
+<div class="kpi">
+<h1>5</h1>
+AI Releases Today
+</div>
+
+<div class="kpi">
+<h1>2</h1>
+Predicted No-Shows
+</div>
+
+</div>
+
+</div>
+
+<div class="card qr">
+
+<h2>📱 Scan QR Code</h2>
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=250https://4-29.github.io/meeting-room-ai-demo/
+
+<p>
+Scan to access the live demo
+</p>
+
+<p>
+https://4-29.github.io/meeting-room-ai-demo/
+</p>
 
 </div>
 
