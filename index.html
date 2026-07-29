@@ -94,30 +94,113 @@ text-align:center;
 
 function recommendRoom(){
 
+let bookedBy =
+document.getElementById("bookedBy").value;
+
 let title =
 document.getElementById("meetingTitle").value;
 
+let meetingDate =
+document.getElementById("meetingDate").value;
+
+let startTime =
+document.getElementById("startTime").value;
+
+let endTime =
+document.getElementById("endTime").value;
+
+let meetingType =
+document.getElementById("meetingType").value;
+
 let attendees =
-document.getElementById("attendees").value;
+parseInt(
+document.getElementById("attendees").value
+);
+
+const dayName =
+new Date(meetingDate)
+.toLocaleDateString(
+'en-US',
+{ weekday:'long' }
+);
 
 let room="";
-let score="";
+let floor="";
 let capacity="";
+let vc="";
 
-if(attendees <= 8){
-room="Orion Room";
+if(attendees <= 6){
+
+room="Jaipur";
+floor="Floor 3";
+capacity="6 Seats";
+vc="No";
+
+}
+else if(attendees <= 8){
+
+room="Munich";
+floor="Floor 3";
+capacity="8 Seats";
+vc="Yes";
+
+}
+else if(attendees <= 10){
+
+room="Rome";
+floor="Floor 4";
 capacity="10 Seats";
-score="92%";
+vc="No";
+
 }
 else if(attendees <= 12){
-room="Neptune Room";
+
+room="Cochin";
+floor="Floor 4";
 capacity="12 Seats";
-score="89%";
+vc="Yes";
+
+}
+else if(attendees <= 16){
+
+room="Trivandrum";
+floor="Floor 5";
+capacity="16 Seats";
+vc="Yes";
+
+}
+else if(attendees <= 20){
+
+room="Brisbane";
+floor="Floor 5";
+capacity="20 Seats";
+vc="Yes";
+
+}
+else if(attendees <= 24){
+
+room="Pune";
+floor="Floor 6";
+capacity="24 Seats";
+vc="No";
+
 }
 else{
-room="Galaxy Room";
-capacity="20 Seats";
-score="85%";
+
+room="London";
+floor="Floor 6";
+capacity="30 Seats";
+vc="Yes";
+
+}
+
+if(meetingType==="VC" && vc==="No"){
+
+room="Munich";
+floor="Floor 3";
+capacity="8 Seats";
+vc="Yes";
+
 }
 
 document.getElementById("result").innerHTML =
@@ -131,24 +214,41 @@ margin-top:15px;">
 
 <h3>✅ AI Recommendation</h3>
 
+<p><b>Booked By:</b> ${bookedBy}</p>
+
 <p><b>Meeting Title:</b> ${title}</p>
+
+<p><b>Date:</b> ${meetingDate}</p>
+
+<p><b>Day:</b> ${dayName}</p>
+
+<p><b>Time:</b> ${startTime} - ${endTime}</p>
+
+<p><b>Meeting Type:</b> ${meetingType}</p>
 
 <p><b>Recommended Room:</b> ${room}</p>
 
+<p><b>Floor:</b> ${floor}</p>
+
 <p><b>Capacity:</b> ${capacity}</p>
 
-<p><b>Requested Attendees:</b> ${attendees}</p>
+<p><b>VC Supported:</b> ${vc}</p>
 
-<p><b>Availability:</b> 🟢 Available Now</p>
+<p><b>Status:</b> 🟢 Available</p>
 
-<p><b>Match Score:</b> ${score}</p>
-
-<p>
-✅ Facilities Available:
-Teams Room • Projector • Whiteboard
-</p>
-
-<button onclick="bookRoom('${room}','${title}')">
+<button onclick="
+bookRoom(
+'${bookedBy}',
+'${title}',
+'${meetingDate}',
+'${dayName}',
+'${startTime}',
+'${endTime}',
+'${meetingType}',
+'${room}',
+'${floor}',
+'${capacity}'
+)">
 📅 Book Now
 </button>
 
