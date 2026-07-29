@@ -218,9 +218,41 @@ Predict • Optimize • Automate
 
 <h2>📅 Book a Meeting</h2>
 
-<input id="meetingTitle" type="text" placeholder="Meeting Title">
+<input id="bookedBy"
+type="text"
+placeholder="Booked By">
 
-<input id="attendees" type="number"
+<input id="meetingTitle"
+type="text"
+placeholder="Meeting Title">
+
+<input id="meetingDate"
+type="date">
+
+<input id="startTime"
+type="time">
+
+<input id="endTime"
+type="time">
+
+<select id="meetingType">
+
+<option value="">
+Select Meeting Type
+</option>
+
+<option value="VC">
+Video Conference (VC)
+</option>
+
+<option value="Non VC">
+Non VC
+</option>
+
+</select>
+
+<input id="attendees"
+type="number"
 placeholder="Number of Attendees">
 
 <button onclick="recommendRoom()">
