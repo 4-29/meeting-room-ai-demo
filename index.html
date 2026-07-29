@@ -94,42 +94,95 @@ text-align:center;
 
 function recommendRoom(){
 
+let title =
+document.getElementById("meetingTitle").value;
+
 let attendees =
 document.getElementById("attendees").value;
 
 let room="";
 let score="";
+let capacity="";
 
 if(attendees <= 8){
 room="Orion Room";
+capacity="10 Seats";
 score="92%";
 }
 else if(attendees <= 12){
 room="Neptune Room";
+capacity="12 Seats";
 score="89%";
 }
 else{
 room="Galaxy Room";
+capacity="20 Seats";
 score="85%";
 }
 
 document.getElementById("result").innerHTML =
+
 `
-<div style='background:#e8f5e9;padding:15px;border-radius:10px;'>
+<div style="
+background:#e8f5e9;
+padding:20px;
+border-radius:10px;
+margin-top:15px;">
 
 <h3>✅ AI Recommendation</h3>
 
+<p><b>Meeting Title:</b> ${title}</p>
+
 <p><b>Recommended Room:</b> ${room}</p>
 
-<p><b>Capacity Match Score:</b> ${score}</p>
+<p><b>Capacity:</b> ${capacity}</p>
 
-<p><b>Reason:</b> Best room based on attendee count and availability.</p>
+<p><b>Requested Attendees:</b> ${attendees}</p>
+
+<p><b>Availability:</b> 🟢 Available Now</p>
+
+<p><b>Match Score:</b> ${score}</p>
+
+<p>
+✅ Facilities Available:
+Teams Room • Projector • Whiteboard
+</p>
+
+<button onclick="bookRoom('${room}','${title}')">
+📅 Book Now
+</button>
 
 </div>
 `;
+
 }
+function bookRoom(room,title){
 
+document.getElementById("result").innerHTML +=
 
+`
+<div style="
+background:#d4edda;
+padding:15px;
+margin-top:15px;
+border-radius:10px;">
+
+<h3>✅ Booking Confirmed</h3>
+
+<p><b>Meeting:</b> ${title}</p>
+
+<p><b>Room:</b> ${room}</p>
+
+<p><b>Status:</b> Reserved Successfully</p>
+
+<p>
+Meeting invitation generated and sent.
+</p>
+
+</div>
+`;
+
+}
 function releaseRoom(){
 
 document.getElementById("release").innerHTML=
@@ -165,7 +218,7 @@ Predict • Optimize • Automate
 
 <h2>📅 Book a Meeting</h2>
 
-<input type="text" placeholder="Meeting Title">
+<input id="meetingTitle" type="text" placeholder="Meeting Title">
 
 <input id="attendees" type="number"
 placeholder="Number of Attendees">
