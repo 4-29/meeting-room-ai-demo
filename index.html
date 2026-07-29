@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Meeting Room Demo</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+margin:0;
+padding:20px;
+}
+
+.header{
+background:#003781;
+color:white;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+.card{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+}
+
+button{
+background:#003781;
+color:white;
+padding:12px 20px;
+border:none;
+border-radius:5px;
+margin-top:10px;
+cursor:pointer;
+}
+
+.room{
+background:#e8f5e9;
+padding:15px;
+border-radius:10px;
+margin-top:15px;
+}
+
+.display{
+background:black;
+color:white;
+padding:20px;
+border-radius:10px;
+margin-top:15px;
+}
+
+.red{
+color:red;
+font-weight:bold;
+}
+
+.green{
+color:lime;
+font-weight:bold;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+</style>
+
+<script>
+function recommendRoom(){
+
+var attendees=
+document.getElementById("attendees").value;
+
+var room="";
+
+if(attendees<=8){
+room="Orion Room";
+}
+else if(attendees<=12){
+room="Neptune Room";
+}
+else{
+room="Galaxy Room";
+}
+
+document.getElementById("result").innerHTML=
+"<div class='room'><h3>Recommended Room: "
++room+
+"</h3><p>AI Confidence: 92%</p></div>";
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="header">
+<h1>AI-Powered Meeting Room Optimization</h1>
+<p>Smart Booking • Smart Occupancy • Smart Utilization</p>
+</div>
+
+<div class="card">
+<h2>Book a Meeting</h2>
+
+<input type="text" placeholder="Meeting Title">
+
+<input id="attendees" type="number" placeholder="Number of Attendees">
+
+<button onclick="recommendRoom()">
+Find Best Room
+</button>
+
+<div id="result"></div>
+</div>
+
+<div class="card">
+<h2>Smart Occupancy Display Panel</h2>
+
+<div class="display">
+<h2>ORION ROOM</h2>
+
+<p class="red">🔴 OCCUPIED</p>
+
+<p>Current Meeting</p>
+
+<p>Procurement Review</p>
+
+<p>10:00 AM - 11:00 AM</p>
+
+<hr>
+
+<p>AI Status</p>
+
+<p class="green">✅ Occupancy Confirmed</p>
+
+<hr>
+
+<p>Next Meeting</p>
+
+<p>Vendor Discussion</p>
+
+<p>11:30 AM - 12:30 PM</p>
+
+</div>
+</div>
+
+<div class="card">
+<h2>Meeting Room Dashboard</h2>
+
+<table>
+<tr>
+<th>Room</th>
+<th>Status</th>
+<th>Available</th>
+</tr>
+
+<tr>
+<td>Orion</td>
+<td>Occupied</td>
+<td>11:00 AM</td>
+</tr>
+
+<tr>
+<td>Neptune</td>
+<td>Available</td>
+<td>Now</td>
+</tr>
+
+<tr>
+<td>Galaxy</td>
+<td>Available Soon</td>
+<td>10:30 AM</td>
+</tr>
+
+</table>
+</div>
+
+<div class="card">
+<h2>AI Insights</h2>
+
+<p>
+⚠ Potential No-Show Detected
+</p>
+
+<p>
+Galaxy Room booking has no occupancy detected after 10 minutes.
+</p>
+
+<p>
+AI Confidence: 85%
+</p>
+
+<button>
+Send Reminder
+</button>
+
+<button>
+Release Room
+</button>
+
+</div>
+
+</body>
+</html>
